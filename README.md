@@ -1,3 +1,11 @@
+App Zap Recall
+
+
+São cartões que contém uma pergunta/afirmação para você exercitar sua memória. 
+um deck com 8 flashcards.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
