@@ -1,22 +1,18 @@
 
 import PerguntaFechada from "./PerguntaFechada";
 
-export default function ListaPerguntas({ deck }) {
+export default function ListaPerguntas({ deck, setIndicePerguntaVirada, indicePerguntaVirada }) {
     console.log('deck', deck)
-    // console.log('deck.Pergunta',deck[0].Pergunta)
+    
     return (
-
         <>
             {deck.map((item, indice) => {
-                return
-                
-                     <PerguntaFechada key={indice} pergunta={item} indice={indice} />
-                
-                   
-                    
-                
+        
+                return(                    
+                    <PerguntaFechada key={indice} pergunta={item} indice={indice} setIndicePerguntaVirada={setIndicePerguntaVirada}  />                    
+                )          
 
-                // <PerguntaFechada key={index} pergunta={deck[index].Pergunta} indice={index}
+               
 
             })}
         </>
@@ -24,5 +20,8 @@ export default function ListaPerguntas({ deck }) {
 
 
 
+
     );
 }
+
+
