@@ -3,7 +3,7 @@ import { useState } from "react";
 import iconeVirar from './assets/img/setinha.png'
 
 export default function PerguntaAberta({ pergunta }) {
-    console.log('PerguntaAberta -pergunta',pergunta)
+    
     const [respostaVirada, setRespostaVirada] = useState(false)
 
     

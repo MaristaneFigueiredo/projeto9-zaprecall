@@ -2,7 +2,8 @@
 import PerguntaFechada from "./PerguntaFechada";
 
 export default function ListaPerguntas({ deck, setIndicePerguntaVirada, indicePerguntaVirada }) {
-    console.log('deck', deck)
+    // export default function ListaPerguntas({ deck }) {
+    // console.log('deck', deck)
     
     return (
         <>
@@ -10,6 +11,7 @@ export default function ListaPerguntas({ deck, setIndicePerguntaVirada, indicePe
         
                 return(                    
                     <PerguntaFechada key={indice} pergunta={item} indice={indice} setIndicePerguntaVirada={setIndicePerguntaVirada}  />                    
+                    // <PerguntaFechada key={indice} pergunta={item} indice={indice}  /> 
                 )          
 
                

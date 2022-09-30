@@ -3,14 +3,15 @@ import seta from './assets/img/seta_play.png'
 import PerguntaAberta from "./PerguntaAberta";
 
 
-// export default function PerguntaFechada({pergunta, indice}){
+
 export default function PerguntaFechada({ pergunta, indice, setIndicePerguntaVirada}) {
+// export default function PerguntaFechada({ pergunta, indice}) {
  
     const vPerguntaRecebida = pergunta;
     const [perguntaVirada, setPerguntaVirada] = useState()
 
     function abrirPergunta(pergunta, indice) {
-        console.log('abrirPergunta-pergunta', pergunta)
+        // console.log('abrirPergunta-pergunta', pergunta)
         setPerguntaVirada(vPerguntaRecebida)
         setIndicePerguntaVirada(indice)
 
