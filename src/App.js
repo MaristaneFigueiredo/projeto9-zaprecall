@@ -1,4 +1,5 @@
 import { useState } from "react"
+import styled from "styled-components"
 
 import GlobalStyle from "./assets/css/GlobalStyle"
 
@@ -8,36 +9,38 @@ import deck from './deck'
 import ListaPerguntas from "./ListaPerguntas"
 
 
-//let arrResultadoflashcards = []         
+
 
 export default function App() {
     const [contadorflashcards, setContadorflashcards] = useState(0)
     const [contadorDeck, setcontadorDeck] = useState(deck.length)
-    const [resultadoflashcards, setResultadoflashcards] = useState([deck])
-    const [indicePerguntaVirada, setIndicePerguntaVirada] = useState()
-    //let arrResultadoflashcards = [...deck]     
+    const [cartas, setCartas] = useState(deck)
+    const [perguntaVirada, setPerguntaVirada] = useState()
+    const [desabilitaBotoes, setDesabilitaBotoes] = useState(true)
 
 
 
 
-    function tratarResposta(resposta) {
 
-        console.log("indicePerguntaVirada", indicePerguntaVirada)
-        console.log("resposta", resposta)
+    function tratarResposta(resposta) {      
 
 
         if (contadorflashcards < contadorDeck) {
             const vContadorflashcards = contadorflashcards + 1
-            let arrResultadoflashcards = [...resultadoflashcards]
 
-            arrResultadoflashcards[indicePerguntaVirada].Resultado = resposta
+           
+            let newCartas = [...cartas]
+
+            newCartas[perguntaVirada].resultado = resposta
 
 
             setContadorflashcards(vContadorflashcards)
-            setResultadoflashcards(arrResultadoflashcards)
-            setIndicePerguntaVirada(null)
+            
+            setCartas(newCartas)
+            setPerguntaVirada(null)
+            setDesabilitaBotoes(true)
 
-            console.log("arrResultadoflashcards", arrResultadoflashcards)
+            
         } else {
             alert('Não tem mais Flashcards')
         }
@@ -48,92 +51,122 @@ export default function App() {
 
 
 
-
-    // function setarResposta(resposta) {
-    //     let newCartas = [...cartas]
-    //     let concluidos = qtdConcluidos + 1
-    //     newCartas[perguntaVirada].resultado = resposta
-    //     setCartas(newCartas)
-    //     setPerguntaVirada(null)
-    //     setQtdConcluidos(concluidos)
-
-    // }
-
-
-
-
-    // function tratarResposta(resposta) {
-    //     // console.log('tratarNaoLembrei')
-    //     if (contadorflashcards < contadorDeck) {
-    //         const vContadorflashcards = contadorflashcards + 1 
-    //         const arrResultadoflashcards = [...resultadoflashcards]         
-
-    //         // console.log(' arrResultadoflashcards[i].inicio',arrResultadoflashcards)
-    //         // console.log(' arrResultadoflashcards[0].Pergunta',arrResultadoflashcards[0].Pergunta)
-    //         // console.log(' resultadoflashcards[i].inicio',resultadoflashcards)
-    //         // console.log(' resultadoflashcards[0].Pergunta',resultadoflashcards[0].Pergunta)
-    //         // console.log(' deck',deck)
-    //         // console.log(' deck[0].Pergunta',deck[0].Pergunta)
-    //         for (let i = 0; i <= resultadoflashcards.length; i++ ) {
-    //              arrResultadoflashcards[i].Resultado=resposta
-
-    //         }
-    //         console.log('arrResultadoflashcards_Final',arrResultadoflashcards)
-
-    //         // resultadoflashcards.forEach(function(item, index) {
-
-    //         //     console.log('arrResultadoflashcards[index]',arrResultadoflashcards[index])
-
-
-    //         //     arrResultadoflashcards[index]= {...item, Resultado:resposta}
-
-    //         // });
-    //         // console.log('arrResultadoflashcards_Final',arrResultadoflashcards)
-    //         setContadorflashcards(vContadorflashcards)
-    //         setResultadoflashcards(arrResultadoflashcards)
-
-    //     } else{
-    //         alert('Não tem mais Flashcards')
-    //     }            
-
-    // }
-
-
-
-
     return (
         <>
-            {/* <GlobalStyle /> */}
+            <GlobalStyle />
 
 
-            <div className="screen-container">
-                <div className="logo-container">
-                    <img src={logo} alt="Imagem logo" />
-                    <h1 className="logo-container">ZapRecall</h1>
-                </div>
+            <ScreenContainer>
+                <LogoContainer>
+                    <img src={logo} alt="Imagem logo" />                    
+                    <h1>ZapRecall</h1>
+                </LogoContainer>
+
+             
+                <ListaPerguntas deck={cartas} setPerguntasViradas={setPerguntaVirada} perguntasViradas={perguntaVirada} desabilitaBotoes={setDesabilitaBotoes} />
+
+                <FooterConcluidos>
+                    <ContainerBotoes >         
+                        <Botao disabled={desabilitaBotoes} data-identifier="forgot-btn" corBotao="#FF3030" onClick={() => tratarResposta("N")}>Não Lembrei </Botao>
 
 
-                <ListaPerguntas deck={deck} setIndicePerguntaVirada={setIndicePerguntaVirada} indicePerguntaVirada={indicePerguntaVirada} />
-                {/* <ListaPerguntas deck={deck}/> */}
+                        <Botao disabled={desabilitaBotoes} data-identifier="almost-forgot-btn" corBotao="#FF922E" onClick={() => tratarResposta("Q")}>Quase não lembrei </Botao>
+                        <Botao disabled={desabilitaBotoes} data-identifier="zap-btn" corBotao="#2FBE34" onClick={() => tratarResposta("Z")}>Zap!</Botao>
 
-                <div className='footer-concluidos'>
-                    <div className='container-botoes'>
-                        <button onClick={() => tratarResposta("N")}>Não Lembrei </button>
-                        <button onClick={() => tratarResposta("Q")}>Quase não lembrei </button>
-                        <button onClick={() => tratarResposta("Z")}>Zap!</button>
-                    </div>
-                    <div>
+                    </ContainerBotoes>
 
+
+                    <div data-identifier="flashcard-counter">
                         {contadorflashcards}/{contadorDeck} CONCLUÍDOS
                     </div>
 
-                </div>
+                </FooterConcluidos>
 
 
 
 
 
-            </div>
+            </ScreenContainer>
         </>
     );
 }
+
+const ScreenContainer = styled.div`
+  background-color: #FB6B6B;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 200px;
+`
+
+
+const LogoContainer = styled.div`
+    display: flex;
+  align-items: center;
+  margin: 40px 0 20px 0;
+
+  img {
+  width: 52px;
+}
+
+h1 {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 45px;
+  color: #FFFFFF;
+  margin-left: 20px;
+}
+ 
+
+`
+
+const FooterConcluidos = styled.div`
+width: 100%;
+  min-height: 50px;
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Recursive';
+  font-weight: 400;
+  font-size: 18px;
+  color: #333333;
+  padding: 10px;
+
+
+`
+
+const ContainerBotoes = styled.div` 
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin: 20px;    
+ 
+`
+const Botao = styled.button`
+width: 90px;
+  font-family: 'Recursive';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #FFFFFF;
+  background: ${props => props.corBotao};
+  border-radius: 5px;
+  border: 1px solid ${props => props.corBotao};
+  padding:5px;
+  cursor: pointer;
+`

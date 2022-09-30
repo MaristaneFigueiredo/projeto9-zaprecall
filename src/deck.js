@@ -1,29 +1,30 @@
-const deck= [
-	{Pergunta:"O que é JSX?",
-	 Resposta:"Uma extensão de linguagem do JavaScript",
-	 Resultado:"" },
-	{Pergunta:"O React é __",
-	 Resposta:"uma biblioteca JavaScript para construção de interfaces",
-	 Resultado:"" },
-	{Pergunta:"Componentes devem iniciar com __ R",
-	Resposta:"letra maiúscula",
-	Resultado:"" },
-	{Pergunta:"Podemos colocar __ dentro do JSX",
-	 Resposta:"expressões",
-	 Resultado:"" },
-	{Pergunta:"O ReactDOM nos ajuda __",
-	 Resposta:"interagindo com a DOM para colocar componentes React na mesma" ,
-	 Resultado:"" },
-	{Pergunta:"Usamos o npm para __",
-	Resposta:"gerenciar os pacotes necessários e suas dependências",
-	 Resultado:"" },
-	{Pergunta:"Usamos props para __",
-	Resposta:"passar diferentes informações para componentes" ,
-	 Resultado:"" },
-	{Pergunta:"Usamos estado (state) para __",
-	Resposta:"dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
-	Resultado:"" }
+const deck = [
+	{pergunta:"O que é JSX?",
+	 resposta:"Uma extensão de linguagem do JavaScript",
+	 resultado:"" },
+	{pergunta:"O React é __",
+	 resposta:"uma biblioteca JavaScript para construção de interfaces",
+	 resultado:"" },
+	{pergunta:"Componentes devem iniciar com __ R",
+	resposta:"letra maiúscula",
+	resultado:"" },
+	{pergunta:"Podemos colocar __ dentro do JSX",
+	 resposta:"expressões",
+	 resultado:"" },
+	{pergunta:"O ReactDOM nos ajuda __",
+	 resposta:"interagindo com a DOM para colocar componentes React na mesma" ,
+	 resultado:"" },
+	{pergunta:"Usamos o npm para __",
+	resposta:"gerenciar os pacotes necessários e suas dependências",
+	 resultado:"" },
+	{pergunta:"Usamos props para __",
+	resposta:"passar diferentes informações para componentes" ,
+	 resultado:"" },
+	{pergunta:"Usamos estado (state) para __",
+	resposta:"dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
+	resultado:"" }
 ]
 
 
-export default deck
+
+ export default deck
